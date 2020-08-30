@@ -1,5 +1,2 @@
-// import React from "react";
-
-export const compose = (...wrappers) => Component => props => {
-  //...
-};
+export const compose = (...wrappers) => component =>
+  wrappers.reduceRight((acc, curr) => curr(acc), component);
