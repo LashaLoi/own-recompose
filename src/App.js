@@ -1,12 +1,14 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
 
-import { withState } from "./recompose/withState";
 import { withHandlers } from "./recompose/withHandlers";
 import { defaultProps } from "./recompose/defaultProps";
 import { renameProps } from "./recompose/renameProps";
+import { withState } from "./recompose/withState";
 import { compose } from "./recompose/compose";
+
+import logo from "./logo.svg";
+
+import "./App.css";
 
 const App = ({ handleClick, onChange, val }) => (
   <div className="App">
@@ -30,9 +32,7 @@ const enhance = compose(
   renameProps("value", "val"),
   withHandlers({
     handleClick: () => () => console.log(1),
-    onChange: props => event => {
-      props.setValue(event.target.value);
-    }
+    onChange: ({ setValue }) => ({ target: { value } }) => setValue(value)
   })
 );
 

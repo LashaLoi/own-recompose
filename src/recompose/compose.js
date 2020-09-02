@@ -1,2 +1,2 @@
-export const compose = (...wrappers) => component =>
-  wrappers.reduceRight((acc, curr) => curr(acc), component);
+export const compose = (...hocs) => component =>
+  hocs.reduceRight((acc, curr) => curr(acc), component);
