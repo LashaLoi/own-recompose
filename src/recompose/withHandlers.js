@@ -1,6 +1,6 @@
 import React from "react";
 
-export const withHandlers = handlers => Component => props => {
+export const withHandlers = handlers => BaseComponent => props => {
   const enhanceProps = Object.keys(handlers).reduce(
     (acc, handler) => ({
       ...acc,
@@ -9,5 +9,5 @@ export const withHandlers = handlers => Component => props => {
     {}
   );
 
-  return <Component {...props} {...enhanceProps} />;
+  return <BaseComponent {...props} {...enhanceProps} />;
 };

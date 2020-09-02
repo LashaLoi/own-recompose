@@ -1,6 +1,6 @@
 import React from "react";
 
-const defaultPropsHoc = defaultProps => Component => props => {
+const defaultPropsHOC = defaultProps => BaseComponent => props => {
   const newProps = Object.keys(props).reduce(
     (acc, curr) => ({
       ...acc,
@@ -9,7 +9,7 @@ const defaultPropsHoc = defaultProps => Component => props => {
     {}
   );
 
-  return <Component {...newProps} />;
+  return <BaseComponent {...newProps} />;
 };
 
-export { defaultPropsHoc as defaultProps };
+export { defaultPropsHOC as defaultProps };

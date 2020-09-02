@@ -1,11 +1,11 @@
-import React, { useReducer } from "react";
+import React, { useReducer, Component } from "react";
 
 export const withReducer = (
   getterName,
   setterName,
   reducer,
   defaultState
-) => Component => props => {
+) => BaseComponent => props => {
   const [state, dispatch] = useReducer(reducer, defaultState);
 
   const enhanceProps = {
@@ -13,7 +13,7 @@ export const withReducer = (
     [setterName]: dispatch
   };
 
-  return <Component {...props} {...enhanceProps} />;
+  return <BaseComponent {...props} {...enhanceProps} />;
 };
 
 export const withClassReducer = (
@@ -21,8 +21,8 @@ export const withClassReducer = (
   setterName,
   reducer,
   defaultState
-) => Component =>
-  class extends React.Component {
+) => BaseComponent =>
+  class extends Component {
     state = {
       [getterName]: defaultState
     };
@@ -38,6 +38,6 @@ export const withClassReducer = (
         [setterName]: this.handleState
       };
 
-      return <Component {...this.props} {...enhanceProps} />;
+      return <BaseComponent {...this.props} {...enhanceProps} />;
     }
   };

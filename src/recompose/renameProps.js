@@ -1,6 +1,9 @@
 import React from "react";
 
-export const renameProps = (oldPropName, newPropName) => Component => props => {
+export const renameProps = (
+  oldPropName,
+  newPropName
+) => BaseComponent => props => {
   const newProps = Object.keys(props).reduce((acc, curr) => {
     if (curr === oldPropName) {
       return {
@@ -15,5 +18,5 @@ export const renameProps = (oldPropName, newPropName) => Component => props => {
     };
   }, {});
 
-  return <Component {...newProps} />;
+  return <BaseComponent {...newProps} />;
 };

@@ -1,7 +1,7 @@
 import React from "react";
 
-export const branch = (test, LeftComponent) => Component => props => {
+export const branch = (test, LeftComponent) => BaseComponent => props => {
   if (test) return <LeftComponent {...props} />;
 
-  return <Component {...props} />;
+  return <BaseComponent {...props} />;
 };

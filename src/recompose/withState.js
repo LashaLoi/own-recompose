@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, Component } from "react";
 
 export const withState = (
   getterName,
   setterName,
   defaultState
-) => Component => props => {
+) => BaseComponent => props => {
   const [state, setState] = useState(defaultState);
 
   const enhanceProps = {
@@ -12,23 +12,23 @@ export const withState = (
     [setterName]: setState
   };
 
-  return <Component {...props} {...enhanceProps} />;
+  return <BaseComponent {...props} {...enhanceProps} />;
 };
 
 export const withClassState = (
   getterName,
   setterName,
   defaultState
-) => Component =>
-  class extends React.Component {
+) => BaseComponent =>
+  class extends Component {
     state = {
       [getterName]: defaultState
     };
 
-    handleState = cb =>
-      this.setState(prevState => ({
-        [getterName]: cb(prevState[getterName])
-      }));
+    handleState = value =>
+      this.setState({
+        [getterName]: value
+      });
 
     render() {
       const enhanceProps = {
@@ -36,6 +36,6 @@ export const withClassState = (
         [setterName]: this.handleState
       };
 
-      return <Component {...this.props} {...enhanceProps} />;
+      return <BaseComponent {...this.props} {...enhanceProps} />;
     }
   };
