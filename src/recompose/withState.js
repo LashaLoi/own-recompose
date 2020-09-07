@@ -25,10 +25,16 @@ export const withClassState = (
       [getterName]: defaultState
     };
 
-    handleState = value =>
-      this.setState({
-        [getterName]: value
-      });
+    handleState = (updateFn, callback) =>
+      this.setState(
+        prevState => ({
+          [getterName]:
+            typeof updateFn === "function"
+              ? updateFn(prevState[getterName])
+              : updateFn
+        }),
+        callback
+      );
 
     render() {
       const enhanceProps = {
