@@ -27,7 +27,7 @@ const App = ({ handleClick, onChange, val }) => (
 const enhance = compose(
   withState("value", "setValue"),
   defaultProps({
-    value: "Alex"
+    value: "Alexey"
   }),
   renameProps("value", "val"),
   withHandlers({

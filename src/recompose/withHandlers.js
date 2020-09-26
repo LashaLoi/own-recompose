@@ -1,4 +1,4 @@
-import React from "react";
+import { createElement } from "react";
 
 export const withHandlers = handlers => BaseComponent => props => {
   const enhanceProps = Object.keys(handlers).reduce(
@@ -9,5 +9,5 @@ export const withHandlers = handlers => BaseComponent => props => {
     {}
   );
 
-  return <BaseComponent {...props} {...enhanceProps} />;
+  return createElement(BaseComponent, { ...props, ...enhanceProps });
 };

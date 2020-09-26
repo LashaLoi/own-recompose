@@ -1,4 +1,4 @@
-import React, { useReducer, Component } from "react";
+import { createElement, useReducer, Component } from "react";
 
 export const withReducer = (
   getterName,
@@ -13,7 +13,7 @@ export const withReducer = (
     [setterName]: dispatch
   };
 
-  return <BaseComponent {...props} {...enhanceProps} />;
+  return createElement(BaseComponent, { ...props, ...enhanceProps });
 };
 
 export const withClassReducer = (
@@ -38,6 +38,6 @@ export const withClassReducer = (
         [setterName]: this.handleState
       };
 
-      return <BaseComponent {...this.props} {...enhanceProps} />;
+      return createElement(BaseComponent, { ...this.props, ...enhanceProps });
     }
   };

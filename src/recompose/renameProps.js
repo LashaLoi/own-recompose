@@ -1,4 +1,4 @@
-import React from "react";
+import { createElement } from "react";
 
 export const renameProps = (
   oldPropName,
@@ -18,5 +18,5 @@ export const renameProps = (
     };
   }, {});
 
-  return <BaseComponent {...newProps} />;
+  return createElement(BaseComponent, newProps);
 };

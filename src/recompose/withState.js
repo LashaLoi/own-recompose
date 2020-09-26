@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import { createElement, useState, Component } from "react";
 
 export const withState = (
   getterName,
@@ -12,7 +12,7 @@ export const withState = (
     [setterName]: setState
   };
 
-  return <BaseComponent {...props} {...enhanceProps} />;
+  return createElement(BaseComponent, { ...props, ...enhanceProps });
 };
 
 export const withClassState = (
@@ -42,6 +42,6 @@ export const withClassState = (
         [setterName]: this.handleState
       };
 
-      return <BaseComponent {...this.props} {...enhanceProps} />;
+      return createElement(BaseComponent, { ...this.props, ...enhanceProps });
     }
   };

@@ -1,4 +1,4 @@
-import React from "react";
+import { createElement } from "react";
 
 const defaultPropsHOC = defaultProps => BaseComponent => props => {
   const newProps = Object.keys(props).reduce(
@@ -9,7 +9,7 @@ const defaultPropsHOC = defaultProps => BaseComponent => props => {
     {}
   );
 
-  return <BaseComponent {...newProps} />;
+  return createElement(BaseComponent, { ...props, ...newProps });
 };
 
 export { defaultPropsHOC as defaultProps };
